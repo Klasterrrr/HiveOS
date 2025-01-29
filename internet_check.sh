@@ -2,7 +2,7 @@
 
 # Функция проверки наличия интернета
 check_internet() {
-    ping -c 1 google.com > /dev/null 2>&1
+    result=$(ping -c 1 google.com > /dev/null 2>&1)
     return $?
 }
 
@@ -11,7 +11,7 @@ while true; do
     if ! check_internet; then
         echo "Интернет отсутствует, останавливаем майнер."
         # Команда для выключения оборудования (замените на соответствующую команду)
-        shutdown -h now
+        sudo shutdown -h now
     else
         echo "Интернет доступен, продолжаем майнить."
     fi
